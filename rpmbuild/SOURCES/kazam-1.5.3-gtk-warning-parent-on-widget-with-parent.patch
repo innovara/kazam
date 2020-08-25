@@ -1,0 +1,39 @@
+--- kazam-1.5.3-orig/kazam/app.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/app.py	2020-08-25 19:02:50.161284183 +0100
+@@ -256,7 +256,11 @@
+         else:
+             self.chk_webcam.set_sensitive(False)
+             self.chk_webcam_broadcast.set_sensitive(False)
+-        self.toolbar_main.insert(self.sep_1, -1)
++        self.sep_2 = Gtk.SeparatorToolItem()
++        self.sep_2.set_draw(False)
++        self.sep_2.set_expand(True)
++        self.toolbar_main.insert(self.sep_2, -1)
++
+ 
+         # Auxiliary toolbar
+         self.aux_context = self.toolbar_aux.get_style_context()
+@@ -312,15 +316,18 @@
+         self.btn_area.connect("toggled", self.cb_record_mode_toggled)
+         self.btn_area.connect("clicked", self.cb_record_area_clicked)
+ 
+-        self.sep_2 = Gtk.SeparatorToolItem()
+-        self.sep_2.set_draw(False)
+-        self.sep_2.set_expand(True)
+-        self.toolbar_aux.insert(self.sep_2, -1)
++        self.sep_3 = Gtk.SeparatorToolItem()
++        self.sep_3.set_draw(False)
++        self.sep_3.set_expand(True)
++        self.toolbar_aux.insert(self.sep_3, -1)
+         self.toolbar_aux.insert(self.btn_full, -1)
+         self.toolbar_aux.insert(self.btn_allscreens, -1)
+         self.toolbar_aux.insert(self.btn_window, -1)
+         self.toolbar_aux.insert(self.btn_area, -1)
+-        self.toolbar_aux.insert(self.sep_2, -1)
++        self.sep_4 = Gtk.SeparatorToolItem()
++        self.sep_4.set_draw(False)
++        self.sep_4.set_expand(True)
++        self.toolbar_aux.insert(self.sep_4, -1)
+ 
+         self.ntb_main.set_current_page(0)
+         self.btn_record.grab_focus()

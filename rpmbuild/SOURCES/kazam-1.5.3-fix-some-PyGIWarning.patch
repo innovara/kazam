@@ -1,0 +1,111 @@
+--- kazam-1.5.3-orig/bin/kazam	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/bin/kazam	2020-08-22 15:36:39.587152325 +0100
+@@ -22,6 +22,7 @@
+ #       MA 02110-1301, USA.
+ 
+ import os
++import gi
+ import sys
+ import dbus
+ import logging
+@@ -29,6 +30,7 @@
+ from argparse import ArgumentParser
+ from dbus.mainloop.glib import DBusGMainLoop
+ 
++gi.require_version('Gtk', '3.0')
+ from gi.repository import Gtk
+ 
+ 
+--- kazam-1.5.3-orig/kazam/frontend/window_area.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/frontend/window_area.py	2020-08-22 15:42:05.200845986 +0100
+@@ -19,6 +19,7 @@
+ #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ #       MA 02110-1301, USA.
+ 
++import gi
+ import cairo
+ import math
+ import logging
+@@ -26,6 +27,7 @@
+ 
+ from gettext import gettext as _
+ 
++gi.require_version('Wnck', '3.0')
+ from gi.repository import Gtk, GObject, Gdk, Wnck, GdkX11
+ 
+ from kazam.backend.prefs import *
+--- kazam-1.5.3-orig/kazam/backend/webcam.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/backend/webcam.py	2020-08-22 16:54:22.319498126 +0100
+@@ -19,8 +19,10 @@
+ #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ #       MA 02110-1301, USA.
+ 
++import gi
+ import logging
+ 
++gi.require_version('GUdev', '1.0')
+ from gi.repository import GObject, GUdev
+ 
+ logger = logging.getLogger("Webcam")
+--- kazam-1.5.3-orig/kazam/frontend/indicator.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/frontend/indicator.py	2020-08-22 16:57:51.723296356 +0100
+@@ -20,6 +20,7 @@
+ #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ #       MA 02110-1301, USA.
+ 
++import gi
+ import logging
+ logger = logging.getLogger("Indicator")
+ 
+@@ -95,6 +96,7 @@
+         # Setup keybindings - Hardcore way
+         #
+         try:
++            gi.require_version('Keybinder', '3.0')
+             from gi.repository import Keybinder
+             logger.debug("Trying to bind hotkeys.")
+             Keybinder.init()
+@@ -146,6 +148,7 @@
+         self.emit("indicator-quit-request")
+ 
+ try:
++    gi.require_version('AppIndicator3', '0.1')
+     from gi.repository import AppIndicator3
+ 
+     class KazamIndicator(KazamSuperIndicator):
+--- kazam-1.5.3-orig/kazam/backend/gstreamer.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/backend/gstreamer.py	2020-08-22 17:05:40.629338478 +0100
+@@ -20,6 +20,7 @@
+ #       MA 02110-1301, USA.
+ 
+ import os
++import gi
+ import logging
+ logger = logging.getLogger("GStreamer")
+ 
+@@ -32,6 +33,8 @@
+ os.environ["GST_DEBUG_DUMP_DOT_DIR"] = "/tmp"
+ os.putenv("GST_DEBUG_DUMP_DOT_DIR", "/tmp")
+ 
++gi.require_version('Gst', '1.0')
++gi.require_version('GstVideo', '1.0')
+ from gi.repository import GObject, Gst, GstVideo
+ 
+ from kazam.frontend.window_webcam import WebcamWindow
+--- kazam-1.5.3-orig/kazam/frontend/window_countdown.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/frontend/window_countdown.py	2020-08-22 17:08:36.055863647 +0100
+@@ -20,12 +20,14 @@
+ #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ #       MA 02110-1301, USA.
+ 
++import gi
+ import cairo
+ import time
+ import math
+ import logging
+ 
+ from ctypes import *
++gi.require_version('PangoCairo', '1.0')
+ from gi.repository import Gtk, GObject, GLib, Gdk, Pango, PangoCairo
+ 
+ from kazam.backend.prefs import *

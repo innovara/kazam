@@ -1,0 +1,10 @@
+[Desktop Entry]
+_Name=Kazam
+_GenericName=Screencast and Screenshot tool
+_Comment=Record a video or take a screenshot of your screen
+Categories=GNOME;AudioVideo;
+Exec=kazam
+Icon=kazam
+X-Unity-IconBackgroundColor=#F56991
+Terminal=false
+Type=Application

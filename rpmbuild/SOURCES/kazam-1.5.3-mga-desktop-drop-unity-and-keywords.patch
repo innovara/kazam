@@ -1,0 +1,35 @@
+--- kazam-1.5.3-orig/data/kazam.desktop.in	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/data/kazam.desktop.in	2020-08-22 15:20:05.190090887 +0100
+@@ -2,32 +2,9 @@
+ _Name=Kazam
+ _GenericName=Screencast and Screenshot tool
+ _Comment=Record a video or take a screenshot of your screen
+-_Keywords=screenshot;screencast;videorecord;desktop recording;
+ Categories=GNOME;AudioVideo;
+ Exec=kazam
+ Icon=kazam
+ X-Unity-IconBackgroundColor=#F56991
+ Terminal=false
+ Type=Application
+-
+-Actions=SSF;SSA;SSW;Prefs;
+-
+-[Desktop Action SSF]
+-_Name=Take a screenshot of entire workspace
+-Exec=kazam -f
+-OnlyShowIn=Unity
+-
+-[Desktop Action SSA]
+-_Name=Select an area to screenshot
+-Exec=kazam -a
+-OnlyShowIn=Unity
+-
+-[Desktop Action SSW]
+-_Name=Select a window to screenshot
+-Exec=kazam -s
+-OnlyShowIn=Unity
+-
+-[Desktop Action Prefs]
+-_Name=Preferences
+-Exec=kazam -p
+-OnlyShowIn=Unity

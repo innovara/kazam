@@ -1,0 +1,36 @@
+--- kazam-1.5.3-orig/kazam/backend/config.py	2014-08-13 19:31:04.000000000 +0100
++++ kazam-1.5.3/kazam/backend/config.py	2020-08-22 15:30:32.955349198 +0100
+@@ -84,7 +84,7 @@
+     CONFIGFILE = os.path.join(CONFIGDIR, "kazam.conf")
+ 
+     def __init__(self):
+-        ConfigParser.__init__(self, self.DEFAULTS[0]['keys'])
++        super().__init__(self)
+         if not os.path.isdir(self.CONFIGDIR):
+             os.makedirs(self.CONFIGDIR)
+         if not os.path.isfile(self.CONFIGFILE):
+@@ -109,9 +109,9 @@
+                     if d_key == key:
+                         return d_section["keys"][key]
+ 
+-    def get(self, section, key):
++    def get(self, section, key, **kwargs):
+         try:
+-            ret = ConfigParser.get(self, section, key)
++            ret = super().get(section, key, **kwargs)
+             if ret == "None":
+                 default = self.find_default(section, key)
+                 self.set(section, key, default)
+@@ -143,11 +143,7 @@
+             return False
+ 
+     def set(self, section, option, value):
+-        # If the section referred to doesn't exist (rare case),
+-        # then create it
+-        if not self.has_section(section):
+-            self.add_section(section)
+-        ConfigParser.set(self, section, option, str(value))
++        super().set(section, option, str(value))
+ 
+     def write(self):
+         file_ = open(self.CONFIGFILE, "w")
